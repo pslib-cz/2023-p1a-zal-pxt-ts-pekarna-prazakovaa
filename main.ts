@@ -5,8 +5,8 @@ const cena: number = 6.70; //1kWh = 6.70kcz
 let dopeceno: boolean = false;
 let prumernaspotreba: number = 0;
 let celkovaspotreba: number = 0;
-let energie: number = 0;
-let celkovacena: number = 0
+let celkovacena: number = 0;
+let celkovycas: number = 0
 
 type Odber = {
     cas: number //milisekundy
@@ -26,7 +26,9 @@ for (let pekarna of data) {
     celkovaspotreba += pekarna.prikon
     prumernaspotreba = Math.round(celkovaspotreba / data.length) / 1000;
     celkovacena = celkovaspotreba / 1000 * cena
+    celkovycas += pekarna.cas * 60
 }
 
-console.log(prumernaspotreba + "kWh") //2.567Wh
-console.log(celkovacena + "kcz") //15156.7kcz
+console.log(prumernaspotreba + " kWh") //2.567Wh
+console.log(celkovacena + " kcz") //103.18kcz
+console.log(celkovycas + " min")
