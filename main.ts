@@ -1,29 +1,32 @@
-/*
-    cas: je doba v sekundách, po kterou trouba
-    odebírala uvedený příkon
-    spotreba: je kolik energie by bylo spotřebováno,
-    pokud by takto trouba pekla celou hodinu
-    (jsou to watthodiny [Wh])
+//cas je doba za kterou pocitame prikon (h)
+//prikon je mnozstvi spotrebovane energie (Wh)
 
-    pro cas: 600s a spotreba: 3500 Wh je skutečné
-    odebrané množství "energie":
-    3500 * (600 / 3600) === 3500 * (1/6) === 583,333W
-*/
+const cena: number = 6.70; //1kWh = 6.70kcz
+let dopeceno: boolean = false;
+let prumernaspotreba: number = 0;
+let celkovaspotreba: number = 0;
+let energie: number = 0;
+let celkovacena: number = 0
+
 type Odber = {
-    cas: number, //čas je v sekundách
-    spotreba: number //spotřeba ve watech za hodinu
+    cas: number //milisekundy
+    prikon: number //watty
 }
-const cena: number = 6.70; // Kč / kWh
+
 let data: Array<Odber> = [
-    { cas: 600, spotreba: 3500 },
-    { cas: 120, spotreba: 0 },
-    { cas: 300, spotreba: 1700 }, // data[2].cas
-    { cas: 60, spotreba: 0 },
-    { cas: 800, spotreba: 1500 },
+    { cas: 1, prikon: 3500 }, // data[0].prikon
+    { cas: 0.8, prikon: 3200 },
+    { cas: 0.5, prikon: 0 },
+    { cas: 1.3, prikon: 5000 },
+    { cas: 0.7, prikon: 3700 },
+    { cas: 0.4, prikon: 0 }
 ]
 
-for (const peceme of data){
-    console.logValue("čas: ", peceme.cas);
-    console.logValue("spotřeba: ", peceme.spotreba);
-    console.logValue("spotřebováno: ", peceme.spotreba / 3600 * peceme.cas);
+for (let pekarna of data) {
+    celkovaspotreba += pekarna.prikon
+    prumernaspotreba = Math.round(celkovaspotreba / data.length) / 1000;
+    celkovacena = celkovaspotreba / 1000 * cena
 }
+
+console.log(prumernaspotreba + "kWh") //2.567Wh
+console.log(celkovacena + "kcz") //15156.7kcz
