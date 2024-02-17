@@ -29,6 +29,6 @@ for (let pekarna of data) {
     celkovycas += pekarna.cas * 60
 }
 
-console.log(prumernaspotreba + " kWh") //2.567Wh
-console.log(celkovacena + " kcz") //103.18kcz
-console.log(celkovycas + " min")
+console.log(prumernaspotreba + " kWh") //2.567 kWh
+console.log(celkovacena + " kcz") //103.18 kcz
+console.log(celkovycas + " min") //282 min
